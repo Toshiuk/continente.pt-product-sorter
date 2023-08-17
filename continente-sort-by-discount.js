@@ -6,7 +6,7 @@
 // @description  The script add option to sort by discount
 // @author       toshiuk
 // @match        https://www.continente.pt/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=.continente.pt
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=continente.pt
 // @grant    GM_addStyle
 // @license MIT
 // ==/UserScript==
