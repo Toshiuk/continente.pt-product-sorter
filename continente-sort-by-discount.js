@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Continente sort by discount
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  The script add option to sort by discount
 // @author       toshiuk
 // @match        https://www.continente.pt/*
@@ -43,6 +43,7 @@ backdropWithLoading.style.cssText = "display: none;position:fixed;top:0;width: 1
 backdropWithLoading.setAttribute("id", "backdropWithLoading");
 backdropWithLoading.appendChild(loadingAnimation);
 
+
 const expandAllItems = async () => {
     return new Promise((resolve) => {
         let nIntervId = setInterval(()=>{
@@ -64,9 +65,11 @@ const expandAllItems = async () => {
 
 
 const getDiscount = (product) => {
-     const discountTag = product.querySelector('.ct-product-tile-badge-value-wrapper')
-     if(!discountTag) return 0;
-    return Number(discountTag.innerText.match(/\d+/g)[0]);
+    const discountTag = product.querySelector('.ct-product-tile-badge-value-wrapper')
+    if(!discountTag) return 0;
+    const discountNumber = Number((discountTag.innerText.match(/\d+/g) || [0])[0])
+    if(discountTag.classList.contains("ct-product-tile-badge-value-wrapper--pvpr")) return discountNumber / 100;
+    return discountNumber;
 }
 
 
